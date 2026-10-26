@@ -1,0 +1,450 @@
+/* =========================================================
+   Shalman Dipto — portfolio styles
+   Mobile-first: base styles are for phones, media queries
+   at the bottom add changes for bigger screens.
+   ========================================================= */
+
+/* ---------- 1. Colors (light theme is the default) ---------- */
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-alt: #f1f2f6;
+  --text: #18181b;
+  --muted: #52525b;
+  --accent: #4338ca;
+  --accent-text: #ffffff;
+  --accent-soft: #e6e7fb;
+  --border: #e2e3ea;
+  --shadow: 0 6px 20px rgb(15 17 21 / 0.08);
+  --radius: 14px;
+  --header-h: 64px;
+  --hero-1: #c7d2fe; /* soft indigo */
+  --hero-2: #fbcfe8; /* soft pink */
+  --hero-3: #a5f3fc; /* soft cyan */
+  --name-from: #4338ca;
+  --name-to: #be185d;
+  color-scheme: light;
+}
+
+/* Dark colors: used when the device prefers dark and no choice was saved
+   (this also covers visitors with JavaScript turned off)... */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1115;
+    --surface: #171a21;
+    --surface-alt: #13161c;
+    --text: #e7e9ee;
+    --muted: #a6acb8;
+    --accent: #8b93ff;
+    --accent-text: #0f1115;
+    --accent-soft: #23264a;
+    --border: #2a2e38;
+    --shadow: 0 6px 20px rgb(0 0 0 / 0.35);
+    --hero-1: #3730a3;
+    --hero-2: #831843;
+    --hero-3: #155e75;
+    --name-from: #a5b4fc;
+    --name-to: #f9a8d4;
+    color-scheme: dark;
+  }
+}
+
+/* ...and when the visitor picks dark with the toggle button. */
+:root[data-theme="dark"] {
+  --bg: #0f1115;
+  --surface: #171a21;
+  --surface-alt: #13161c;
+  --text: #e7e9ee;
+  --muted: #a6acb8;
+  --accent: #8b93ff;
+  --accent-text: #0f1115;
+  --accent-soft: #23264a;
+  --border: #2a2e38;
+  --shadow: 0 6px 20px rgb(0 0 0 / 0.35);
+  --hero-1: #3730a3;
+  --hero-2: #831843;
+  --hero-3: #155e75;
+  --name-from: #a5b4fc;
+  --name-to: #f9a8d4;
+  color-scheme: dark;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.6em; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; }
+
+a { color: var(--accent); text-underline-offset: 3px; }
+
+/* Clear keyboard focus ring everywhere */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+main:focus { outline: none; }
+
+/* Hidden visually, but still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.container.narrow { max-width: 760px; }
+
+/* Sections land below the sticky header when jumped to */
+section { scroll-margin-top: var(--header-h); }
+
+/* ---------- 3. Skip link ---------- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: var(--accent-text);
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+
+/* ---------- 4. Header & navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px; /* big enough to tap */
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--accent); }
+.theme-toggle { margin-left: 8px; }
+.icon-btn[hidden] { display: none; }
+
+/* Show moon in light mode (click = go dark), sun in dark mode */
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-nav a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+}
+.site-nav a:hover { background: var(--accent-soft); }
+
+/* Mobile: with JavaScript the menu becomes a drop-down panel.
+   Without JavaScript it simply stays visible. */
+.menu-toggle { display: none; margin-left: auto; }
+.js .menu-toggle { display: grid; }
+
+.js .site-nav {
+  display: none;
+  position: absolute;
+  top: calc(var(--header-h) - 4px);
+  left: 16px;
+  right: 16px;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.js .site-nav.open { display: block; }
+
+/* ---------- 5. Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+}
+.btn-primary { background: var(--accent); color: var(--accent-text); }
+.btn-ghost { background: transparent; color: var(--accent); }
+.btn-ghost:hover { background: var(--accent-soft); }
+.btn:hover { transform: translateY(-2px); }
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden; /* keeps the blobs inside the hero */
+  padding: 72px 0 80px;
+  background: var(--bg);
+}
+
+/* Three soft, blurred colour blobs that drift slowly behind the text */
+.hero-blobs span {
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.hero-blobs span:nth-child(1) { background: var(--hero-1); top: -30vmax; left: -20vmax; }
+.hero-blobs span:nth-child(2) { background: var(--hero-2); top: -20vmax; right: -25vmax; animation-delay: -6s; }
+.hero-blobs span:nth-child(3) { background: var(--hero-3); bottom: -40vmax; left: 20%; animation-delay: -12s; }
+
+@keyframes drift {
+  to { transform: translate(6vmax, 4vmax) scale(1.1); }
+}
+
+/* Text sits above the blobs and fades up gently on page load */
+.hero-content {
+  position: relative;
+  animation: fade-up 0.8s ease-out both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.eyebrow {
+  margin: 0 0 0.3em;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  letter-spacing: -1px;
+  margin-bottom: 0.25em;
+  color: var(--name-from); /* fallback if gradient text isn't supported */
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero h1 {
+    background: linear-gradient(90deg, var(--name-from), var(--name-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+/* Windows High Contrast mode: drop the gradient so the name stays visible */
+@media (forced-colors: active) {
+  .hero h1 { background: none; color: CanvasText; }
+}
+.tagline {
+  max-width: 36ch;
+  font-size: clamp(1.1rem, 2.8vw, 1.35rem);
+  color: var(--text);
+  margin-bottom: 1.8em;
+}
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+/* Solid background so the button text never sits on a coloured blob */
+.hero .btn-ghost { background: var(--surface); }
+.hero .btn-ghost:hover { background: var(--accent-soft); }
+
+/* ---------- 7. Sections ---------- */
+.section { padding: 64px 0; }
+.section.alt { background: var(--surface-alt); }
+.section p { color: var(--muted); }
+
+/* Skills chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.chips li {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 500;
+}
+
+/* Project cards */
+.cards {
+  display: grid;
+  gap: 20px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0 0 1.2em;
+  padding: 0;
+}
+.tags li {
+  padding: 2px 10px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 0.85rem;
+}
+.card-links {
+  display: flex;
+  gap: 18px;
+  margin: auto 0 0;
+}
+.card-links a {
+  display: inline-block;
+  padding: 8px 0; /* bigger tap area */
+  font-weight: 600;
+}
+
+/* Contact */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1.5em;
+}
+
+/* ---------- 8. Footer ---------- */
+.site-footer {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.site-footer p { margin: 0; }
+
+/* ---------- 9. Bigger screens ---------- */
+@media (min-width: 640px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .contact-links { flex-direction: row; }
+  .hero { padding: 110px 0 120px; }
+  .section { padding: 88px 0; }
+}
+
+@media (min-width: 960px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+
+  /* Full nav in the header; hamburger hidden */
+  .js .menu-toggle,
+  .menu-toggle { display: none; }
+  .site-nav,
+  .js .site-nav {
+    display: block;
+    position: static;
+    padding: 0;
+    margin-left: auto;
+    margin-right: 12px;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .site-nav ul { display: flex; gap: 4px; }
+}
+
+/* Without JavaScript on small screens: let the nav wrap under the logo */
+@media (max-width: 959px) {
+  html:not(.js) .header-inner { flex-wrap: wrap; height: auto; padding-block: 10px; }
+  html:not(.js) .site-nav { width: 100%; order: 4; }
+  html:not(.js) .site-nav ul { display: flex; flex-wrap: wrap; }
+}
+
+/* ---------- 10. Respect "reduce motion" setting ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .btn:hover,
+  .card:hover { transform: none; }
+}

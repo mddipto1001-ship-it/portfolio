@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && s=$(find . -type f ! -name \"*.md\" ! -path \"./.claude/*\" ! -path \"./.git/*\" ! -path \"./node_modules/*\" ! -name \".*\" ! -name \"package*.json\" -printf \"%s\\n\" | awk \"{t+=\\$1} END {print t+0}\"); if [ \"$s\" -gt 512000 ]; then printf \"{\\\"systemMessage\\\":\\\"Site is %s KB, over the 500 KB limit\\\",\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"Site files total %s bytes, over the 500 KB (512000 bytes) limit in CLAUDE.md. Reduce size before continuing.\\\"}}\" $((s/1024)) \"$s\"; fi 2>/dev/null || true",
+            "timeout": 10,
+            "statusMessage": "Checking site size..."
+          }
+        ]
+      }
+    ]
+  }
+}

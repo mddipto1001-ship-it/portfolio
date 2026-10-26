@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shalman Dipto | Web Developer &amp; Freelancer</title>
+  <meta name="description" content="Shalman Dipto is a beginner web developer and freelancer building simple, fast and accessible websites.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Shalman Dipto | Web Developer &amp; Freelancer">
+  <meta property="og:description" content="Simple, fast and accessible websites.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Runs before the page is drawn, so the right theme shows with no flash.
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      root.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top" aria-label="Shalman Dipto, back to top">SD</a>
+
+      <!-- Order matters for keyboard users: menu button, then the menu links, then the theme button -->
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="22" height="22"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
+        <svg class="icon-moon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="container hero-content">
+        <p class="eyebrow">Hi, I'm</p>
+        <h1 id="hero-title">Shalman Dipto</h1>
+        <p class="tagline">Beginner web developer &amp; freelancer — building simple, fast websites.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="#contact">Contact me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container narrow">
+        <h2 id="about-title">About</h2>
+        <!-- TODO: write your own story here -->
+        <p>I'm a beginner web developer who loves turning ideas into clean, working websites. I focus on the basics done well: clear layouts, fast pages and sites that everyone can use.</p>
+        <p>As a freelancer, I help small businesses and individuals get online with simple landing pages and personal sites. I'm always learning something new and happy to take on fresh challenges.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section alt" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 id="skills-title">Skills</h2>
+        <ul class="chips">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>Responsive Design</li>
+          <li>Git &amp; GitHub</li>
+          <li>Accessibility basics</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 id="projects-title">Projects</h2>
+        <div class="cards">
+          <!-- TODO: replace with your real project (title, text, tags, links) -->
+          <article class="card">
+            <h3>Project One</h3>
+            <p>A short description of what this project does and what you learned building it.</p>
+            <ul class="tags" aria-label="Built with">
+              <li>HTML</li><li>CSS</li>
+            </ul>
+            <p class="card-links">
+              <a href="#">Live demo<span class="sr-only"> of Project One</span></a>
+              <a href="#">Code<span class="sr-only"> for Project One</span></a>
+            </p>
+          </article>
+
+          <!-- TODO: replace with your real project -->
+          <article class="card">
+            <h3>Project Two</h3>
+            <p>A short description of what this project does and what you learned building it.</p>
+            <ul class="tags" aria-label="Built with">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <p class="card-links">
+              <a href="#">Live demo<span class="sr-only"> of Project Two</span></a>
+              <a href="#">Code<span class="sr-only"> for Project Two</span></a>
+            </p>
+          </article>
+
+          <!-- TODO: replace with your real project -->
+          <article class="card">
+            <h3>Project Three</h3>
+            <p>A short description of what this project does and what you learned building it.</p>
+            <ul class="tags" aria-label="Built with">
+              <li>JavaScript</li><li>Responsive</li>
+            </ul>
+            <p class="card-links">
+              <a href="#">Live demo<span class="sr-only"> of Project Three</span></a>
+              <a href="#">Code<span class="sr-only"> for Project Three</span></a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section alt" id="contact" aria-labelledby="contact-title">
+      <div class="container narrow">
+        <h2 id="contact-title">Contact</h2>
+        <p>Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+        <div class="contact-links">
+          <!-- TODO: put your real email address in both places below -->
+          <a class="btn btn-primary" href="mailto:your-email@example.com">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>
+            Email me
+          </a>
+          <!-- TODO: put your WhatsApp number (country code, no + or spaces), e.g. 8801712345678 -->
+          <a class="btn btn-ghost" href="https://wa.me/8801XXXXXXXXX" target="_blank" rel="noopener">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+            WhatsApp<span class="sr-only"> (opens in new tab)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> Shalman Dipto. Built with plain HTML, CSS &amp; JavaScript.</p>
+    </div>
+  </footer>
+</body>
+</html>
