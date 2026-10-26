@@ -238,6 +238,11 @@ main:focus { outline: none; }
 ```
 When the "Skip to main content" link jumps to `<main>`, we don't need a giant outline around the whole page.
 
+```css
+[hidden] { display: none !important; }
+```
+`[hidden]` matches any element with the `hidden` attribute, like `<article class="card" hidden>`. Browsers already hide those, but only weakly: a class that sets `display` (like `.card { display: flex; }`) would win and show the element again. `!important` makes sure "hidden" always means hidden. That's how projects 2 and 3 are switched off for now.
+
 ### Screen-reader-only text
 
 ```css

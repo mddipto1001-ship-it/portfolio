@@ -102,6 +102,9 @@ a { color: var(--accent); text-underline-offset: 3px; }
 }
 main:focus { outline: none; }
 
+/* Anything with the "hidden" attribute stays hidden, even if a class sets display */
+[hidden] { display: none !important; }
+
 /* Hidden visually, but still read by screen readers */
 .sr-only {
   position: absolute;
